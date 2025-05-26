@@ -16,13 +16,21 @@ interface MiniDashboardProps {
 const screenWidth = Dimensions.get('window').width;
 
 export const MiniDashboard: React.FC<MiniDashboardProps> = ({ summaries, total }) => {
-  const colors = ['#E63946', '#1D3557', '#2A9D8F', '#000000', '#F4A261'];
+  const colors = [
+    '#E63946', '#1D3557', '#2A9D8F', '#000000', '#F4A261',
+    '#E76F51', '#A8DADC', '#457B9D', '#F72585', '#B5179E',
+    '#7209B7', '#560BAD', '#480CA8', '#3A0CA3', '#3F37C9',
+    '#4361EE', '#4895EF', '#4CC9F0', '#FFB703', '#FB8500',
+    '#219EBC', '#023047', '#8ECAE6', '#FF006E', '#8338EC',
+    '#3A86FF', '#FFBE0B', '#FB5607', '#FF006E', '#8338EC'
+  ];
+
 
   const sortedSummaries = [...summaries].sort((a, b) => b.amount - a.amount);
 
   const pieData = sortedSummaries.map((item, index) => {
     const percentage = ((item.amount / total) * 100).toFixed(1);
-    
+
     return {
       name: `(${item.amount.toFixed(2)})`,
       amount: item.amount,

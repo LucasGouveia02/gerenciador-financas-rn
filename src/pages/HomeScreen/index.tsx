@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, SectionList } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { styles } from "./styles";
-import { useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MiniDashboard } from "../../components/MiniDashboard";
-import { TaskOptionsModal } from "../../components/TaskOptionsModal";
 import { getTasks } from "../../api/task/task";
 import { HomeActions } from "../../components/HomeActions";
 import { AddExpenseModal } from "../../components/AddExpenseModal";
@@ -24,7 +22,6 @@ export default function Home() {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [modalVisible, setModalVisible] = useState(false);
-    const router = useRouter();
 
     useEffect(() => {
         const getUserInfo = async () => {
@@ -117,11 +114,6 @@ export default function Home() {
                 date: task.data
             }))
         );
-
-        router.push({
-            pathname: '/ExpensesList',
-            params: { expenses: JSON.stringify(expenses) }
-        });
     };
 
     const totalSpent = tasks.reduce((sum, category) => {
@@ -136,23 +128,31 @@ export default function Home() {
 
     return (
         <>
-            <ScrollView
-                style={styles.container}
-                contentContainerStyle={[{ paddingHorizontal: 20, paddingTop: 20 }]}>
+            <SectionList
+                sections={tasks}
+                keyExtractor={(item, index) => item.id + index}
+                renderItem={({ item }) => (
+                    <Text>{item.descricao} - {item.valor}</Text>
+                )}
+                renderSectionHeader={({ section: { title } }) => (
+                    <Text style={{ fontWeight: 'bold', marginTop: 10 }}>{title}</Text>
+                )}
+                ListHeaderComponent={
+                    <>
+                        {renderDateFilter()}
+                        <MiniDashboard summaries={summaries} total={totalSpent} />
+                        <HomeActions
+                            onAddExpense={() => setAddExpenseModalVisible(true)}
+                            onAddGroup={() => setAddGroupModalVisible(true)}
+                            onViewExpenses={handleViewExpenses}
+                        />
+                        {loading && <Text style={{ textAlign: 'center', marginTop: 10 }}>Carregando...</Text>}
+                        {error && <Text style={{ textAlign: 'center', marginTop: 10, color: 'red' }}>{error}</Text>}
+                    </>
+                }
+                contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 20 }}
+            />
 
-                {/* Filtro de Mês/Ano */}
-                {renderDateFilter()}
-
-                <MiniDashboard summaries={summaries} total={totalSpent} />
-                <HomeActions
-                    onAddExpense={() => setAddExpenseModalVisible(true)}
-                    onAddGroup={() => setAddGroupModalVisible(true)}
-                    onViewExpenses={handleViewExpenses}
-                />
-
-                {loading && <Text style={{ textAlign: 'center', marginTop: 10 }}>Carregando...</Text>}
-                {error && <Text style={{ textAlign: 'center', marginTop: 10, color: 'red' }}>{error}</Text>}
-            </ScrollView>
 
             <AddExpenseModal
                 visible={addExpenseModalVisible}
@@ -169,14 +169,6 @@ export default function Home() {
                 onSubmit={(name) => {
                     console.log('Novo grupo:', name);
                     setAddGroupModalVisible(false);
-                }}
-            />
-
-            <TaskOptionsModal
-                visible={modalVisible}
-                onClose={() => setModalVisible(false)}
-                onOptionSelect={(option) => {
-                    setModalVisible(false);
                 }}
             />
         </>

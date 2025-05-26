@@ -1,7 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './pages/HomeScreen';
-import ExpensesListScreen from './pages/ExpensesListScreen';
 
 export interface Expense {
   id: string;
@@ -21,7 +20,6 @@ export default function Routes() {
   return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="ExpensesList" component={ExpensesListScreen} />
       </Stack.Navigator>
   );
 }
