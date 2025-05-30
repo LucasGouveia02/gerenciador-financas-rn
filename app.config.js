@@ -13,7 +13,7 @@ export default ({ config }) => {
             ACCESS_IP_API: process.env.EXPO_PUBLIC_ACCESS_IP_API
         },
         android: {
-            package: "br.com.senac.foodconnect",
+            package: "br.com.gerenciador.financas",
             versionCode: 1
         }
     };
