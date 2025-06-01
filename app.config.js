@@ -3,17 +3,18 @@ import 'dotenv/config';
 export default ({ config }) => {
     return {
         ...config,
-        name: "GerenciadorFinancas",
-        slug: "gerenciador-financas-app",
+        name: "GerenciadorGastos",
+        slug: "gerenciador-gastos-app",
         version: "1.0.0",
         extra: {
             eas: {
-                projectId: "4cd3f1d6-d4a5-432f-a054-f2b088048e26"
+                "projectId": "acb265d2-d6b9-4f81-ad0d-ef04b6610820"
             },
-            ACCESS_IP_API: process.env.EXPO_PUBLIC_ACCESS_IP_API
+            ACCESS_IP_API: process.env.EXPO_PUBLIC_ACCESS_IP_API,
+            ANDROID_CLIENT_ID: process.env.EXPO_PUBLIC_ANDROID_CLIENT_ID,
         },
         android: {
-            package: "br.com.gerenciador.financas",
+            package: "br.com.gerenciador.gastos",
             versionCode: 1
         }
     };

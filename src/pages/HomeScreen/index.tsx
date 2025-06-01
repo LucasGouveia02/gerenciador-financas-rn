@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, SectionList } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { styles } from "./styles";
@@ -8,6 +7,7 @@ import { getTasks } from "../../api/task/task";
 import { HomeActions } from "../../components/HomeActions";
 import { AddExpenseModal } from "../../components/AddExpenseModal";
 import { AddGroupModal } from "../../components/AddGroupModal";
+import { useEffect, useState } from "react";
 
 export default function Home() {
     const [month, setMonth] = useState<string>(new Date().getMonth() + 1 < 10 ? `0${new Date().getMonth() + 1}` : `${new Date().getMonth() + 1}`);
@@ -157,7 +157,7 @@ export default function Home() {
             <AddExpenseModal
                 visible={addExpenseModalVisible}
                 onClose={() => setAddExpenseModalVisible(false)}
-                onSubmit={(data) => {
+                onSubmit={(data: any) => {
                     console.log('Nova despesa:', data);
                     setAddExpenseModalVisible(false);
                 }}
@@ -166,7 +166,7 @@ export default function Home() {
             <AddGroupModal
                 visible={addGroupModalVisible}
                 onClose={() => setAddGroupModalVisible(false)}
-                onSubmit={(name) => {
+                onSubmit={(name: any) => {
                     console.log('Novo grupo:', name);
                     setAddGroupModalVisible(false);
                 }}

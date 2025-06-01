@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'br.com.gerenciador.financas'
+    namespace 'br.com.gerenciador.gastos'
     defaultConfig {
-        applicationId 'br.com.gerenciador.financas'
+        applicationId 'br.com.gerenciador.gastos'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

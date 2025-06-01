@@ -1,4 +1,4 @@
-package br.com.gerenciador.financas
+package br.com.gerenciador.gastos
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

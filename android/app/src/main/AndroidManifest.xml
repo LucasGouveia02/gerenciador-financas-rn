@@ -24,7 +24,8 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="br.com.gerenciador.financas"/>
+        <data android:scheme="br.com.gerenciador.gastos"/>
+        <data android:scheme="exp+gerenciador-gastos-app"/>
       </intent-filter>
     </activity>
   </application>

@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "gerenciador-financas",
-    "slug": "gerenciador-financas-app",
+    "name": "gerenciador-gastos",
+    "slug": "gerenciador-gastos-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "scheme": "br.com.gerenciador.gastos",
     "splash": {
       "image": "./src/assets/images/icon.png",
       "resizeMode": "contain",
@@ -19,7 +20,7 @@
       "permissions": [
         "NOTIFICATIONS"
       ],
-      "package": "br.com.gerenciador.financas",
+      "package": "br.com.gerenciador.gastos",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/icon.png",
         "backgroundColor": "#ffffff"
@@ -28,11 +29,6 @@
     },
     "web": {
       "favicon": "./src/assets/images/icon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "4cd3f1d6-d4a5-432f-a054-f2b088048e26"
-      }
     }
   }
 }

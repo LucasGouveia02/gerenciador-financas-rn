@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Routes from './src/routes';
+import { useEffect } from 'react';
 
 // Configura o comportamento padrão das notificações
 Notifications.setNotificationHandler({
