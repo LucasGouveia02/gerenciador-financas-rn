@@ -1,6 +1,6 @@
 {
   "name": "gerenciador-gastos",
-  "main": "index.tsx",
+  "main": "index.ts",
   "version": "1.0.0",
   "scripts": {
     "start:local": "cross-env NODE_ENV=development expo start",
