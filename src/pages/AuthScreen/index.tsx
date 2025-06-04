@@ -7,7 +7,6 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { styles } from './styles';
 import { useEffect, useState } from 'react';
-// Removido: import { styles } from './styles'; // Os estilos estão definidos neste arquivo
 
 type RootStackParamList = {
     Home: undefined;
@@ -171,9 +170,6 @@ export default function AuthScreen() {
         await AsyncStorage.removeItem('userInfo');
         setAccessToken(null);
         setUserInfo(null);
-        console.log("Usuário deslogado localmente.");
-        // Não é necessário navegar aqui se AuthScreen é a tela de login.
-        // Se o usuário estivesse em 'Home', a lógica de navegação da app o traria de volta para 'Auth'.
     };
 
     if (isLoading) {
@@ -184,14 +180,6 @@ export default function AuthScreen() {
             </View>
         );
     }
-
-    // Não precisamos mais do useEffect abaixo porque loadStoredAuth já faz a navegação.
-    // useEffect(() => {
-    //   if (userInfo && accessToken && !isLoading) { // Adicionado !isLoading para evitar navegação prematura
-    //     console.log("Usuário já logado, navegando para Home (useEffect [userInfo, accessToken]).");
-    //     navigation.replace('Home');
-    //   }
-    // }, [userInfo, accessToken, navigation, isLoading]);
 
     return (
         <View style={styles.container}>

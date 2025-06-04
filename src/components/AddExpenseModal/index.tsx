@@ -5,7 +5,13 @@ import { styles } from './styles';
 interface AddExpenseModalProps {
   visible: boolean;
   onClose: () => void;
-  onSubmit: (data: { name: string; amount: number }) => void;
+  onSubmit: (data: {
+    date: string;       // ex: "2025-06-03" (formato AAAA-MM-DD)
+    description: string; // Mapeia para 'DescricaoGasto'
+    category: string;    // Mapeia para 'CategoriaGasto'
+    amount: number;      // Mapeia para 'ValorGasto'
+    name?: string;
+  }) => void;
 }
 
 export const AddExpenseModal: React.FC<AddExpenseModalProps> = ({ visible, onClose, onSubmit }) => {
@@ -33,7 +39,12 @@ export const AddExpenseModal: React.FC<AddExpenseModalProps> = ({ visible, onClo
           <Button
             title="Salvar"
             onPress={() => {
-              onSubmit({ name, amount: parseFloat(amount) });
+              onSubmit({
+                name, amount: parseFloat(amount),
+                date: '',
+                description: '',
+                category: ''
+              });
               setName('');
               setAmount('');
               onClose();
